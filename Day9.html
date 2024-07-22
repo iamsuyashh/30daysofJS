@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation with Event Handling</title>
+    <style>
+        /* Define a CSS class with styles */
+        .highlight {
+            background-color: yellow;
+            font-weight: bold;
+        }
+
+        /* Define a style for the element to change its border color */
+        .border-change {
+            border: 2px solid black;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Task 1: Select an HTML element by its ID and change its text content -->
+    <p id="myParagraph">This is the original text.</p>
+    <button onclick="changeText()">Change Text</button>
+
+    <!-- Task 2: Select an HTML element by its class and change its background color -->
+    <div class="class">hello world</div>
+    <button onclick="changeBackground()">Click to Change Color</button>
+
+    <!-- Task 3: Create a new div with text and append it to the body -->
+    <button onclick="createAndAppendDiv()">Create and Append Div</button>
+
+    <!-- Task 4: Create a new li and add to existing ul list -->
+    <ul id="myList">
+        <li>List item 1</li>
+        <li>List item 2</li>
+        <li>List item 3</li>
+    </ul>
+    <button onclick="addListItem()">Add List Item</button>
+
+    <!-- Task 5: Select an HTML element by its class and remove it -->
+    <p class="remove">Remove me</p>
+    <button onclick="removeElementByClass()">Click to Remove</button>
+
+    <!-- Task 6: Remove the last child of a specific HTML element -->
+    <ul id="myListTwo">
+        <li>List item 1</li>
+        <li>List item 2</li>
+        <li>List item 3</li>
+    </ul>
+    <button onclick="removeLastItem()">Remove Last Item</button>
+
+    <!-- Task 7: Select an HTML element and change one of its attributes -->
+    <img id="myImage" src="https://via.placeholder.com/150" alt="Placeholder Image">
+    <button onclick="changeImageSource()">Change Image</button>
+
+    <!-- Task 8: Add and remove a CSS class to/from an HTML element -->
+    <p id="myClassElement">This paragraph will have its class changed.</p>
+    <button onclick="addClass()">Add Highlight Class</button>
+    <button onclick="removeClass()">Remove Highlight Class</button>
+
+    <!-- Activity 5: Event Handling -->
+    <!-- Task 9: Add a click event listener to a button that changes the text content of a paragraph -->
+    <p id="eventParagraph">This is the text that will change on click.</p>
+    <button id="changeTextButton">Change Paragraph Text</button>
+
+    <!-- Task 10: Add a mouseover event listener to an element that changes its border color -->
+    <div id="hoverElement" class="border-change">Hover over me to change border color!</div>
+
+    <script>
+        // Task 1: Select an HTML element by its ID and change its text content
+        function changeText() {
+            var element = document.getElementById("myParagraph");
+            element.textContent = "This is the new text.";
+        }
+
+        // Task 2: Select an HTML element by its class and change its background color
+        function changeBackground() {
+            var elements = document.getElementsByClassName("class");
+            if (elements.length > 0) {
+                elements[0].style.backgroundColor = "red";
+            }
+        }
+
+        // Task 3: Create a new div with text and append it to the body
+        function createAndAppendDiv() {
+            var newDiv = document.createElement("div");
+            var newContent = document.createTextNode("This is a new div element.");
+            newDiv.appendChild(newContent);
+            document.body.appendChild(newDiv);
+        }
+
+        // Task 4: Create a new li and add to existing ul list
+        function addListItem() {
+            var newLi = document.createElement("li");
+            var newContent = document.createTextNode("New list item");
+            newLi.appendChild(newContent);
+            var ul = document.getElementById("myList");
+            ul.appendChild(newLi);
+        }
+
+        // Task 5: Select an HTML element by its class and remove it
+        function removeElementByClass() {
+            var elements = document.getElementsByClassName("remove");
+            if (elements.length > 0) {
+                elements[0].remove();
+            }
+        }
+
+        // Task 6: Remove the last child of a specific HTML element
+        function removeLastItem() {
+            var ul = document.getElementById("myListTwo");
+            var lastChild = ul.lastElementChild;
+            if (lastChild) {
+                ul.removeChild(lastChild);
+            }
+        }
+
+        // Task 7: Select an HTML element and change one of its attributes
+        function changeImageSource() {
+            var image = document.getElementById('myImage');
+            image.src = "https://via.placeholder.com/300";
+        }
+
+        // Task 8: Add and remove a CSS class to/from an HTML element
+        function addClass() {
+            var element = document.getElementById('myClassElement');
+            element.classList.add('highlight');
+        }
+
+        function removeClass() {
+            var element = document.getElementById('myClassElement');
+            element.classList.remove('highlight');
+        }
+
+        // Task 9: Add a click event listener to a button that changes the text content of a paragraph
+        document.getElementById('changeTextButton').addEventListener('click', function() {
+            var paragraph = document.getElementById('eventParagraph');
+            paragraph.textContent = "The text has been changed by clicking the button.";
+        });
+
+        // Task 10: Add a mouseover event listener to an element that changes its border color
+        document.getElementById('hoverElement').addEventListener('mouseover', function() {
+            this.style.borderColor = "blue";
+        });
+
+        // Optional: Reset the border color when the mouse leaves the element
+        document.getElementById('hoverElement').addEventListener('mouseout', function() {
+            this.style.borderColor = "black";
+        });
+    </script>
+</body>
+
+</html>
