@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Handling Activities</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+        .list-item {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Event Handling Activities</h1>
+
+    <!-- Activity 1: Basic Event Handling -->
+    <h2>Activity 1: Basic Event Handling</h2>
+
+    <!-- Task 1: Click Event Listener -->
+    <button id="changeTextButton">Change Text</button>
+    <p id="textParagraph">This text will change when the button is clicked.</p>
+
+    <!-- Task 2: Double-Click Event Listener -->
+    <img id="toggleImage" src="https://via.placeholder.com/150" alt="Placeholder Image" style="cursor: pointer;">
+
+    <!-- Activity 2: Mouse Events -->
+    <h2>Activity 2: Mouse Events</h2>
+
+    <!-- Task 3 & 4: Mouseover and Mouseout Event Listeners -->
+    <div id="hoverElement" style="width: 200px; height: 100px; background-color: lightblue;">
+        Hover over me!
+    </div>
+
+    <!-- Activity 3: Keyboard Events -->
+    <h2>Activity 3: Keyboard Events</h2>
+
+    <!-- Task 5: Keydown Event Listener -->
+    <input type="text" id="keyInputField" placeholder="Type something..." style="display: block; margin-bottom: 10px;">
+
+    <!-- Task 6: Keyup Event Listener -->
+    <p id="keyValueDisplay">Current value: </p>
+
+    <!-- Activity 4: Form Events -->
+    <h2>Activity 4: Form Events</h2>
+
+    <!-- Task 7: Submit Event Listener -->
+    <form id="myForm" style="margin-bottom: 10px;">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Task 8: Change Event Listener -->
+    <select id="dropdown" style="margin-bottom: 10px;">
+        <option value="Option 1">Option 1</option>
+        <option value="Option 2">Option 2</option>
+        <option value="Option 3">Option 3</option>
+    </select>
+    <p id="selectedValue">Selected value: </p>
+
+    <!-- Activity 5: Event Delegation -->
+    <h2>Activity 5: Event Delegation</h2>
+
+    <!-- Task 9 & 10: Click Event Listener and Event Delegation -->
+    <ul id="itemList">
+        <li class="list-item">Item 1</li>
+        <li class="list-item">Item 2</li>
+        <li class="list-item">Item 3</li>
+    </ul>
+    <button id="addItemButton">Add New Item</button>
+
+    <script>
+        // Activity 1: Basic Event Handling
+
+        // Task 1: Click Event Listener
+        const changeTextButton = document.getElementById('changeTextButton');
+        const textParagraph = document.getElementById('textParagraph');
+
+        changeTextButton.addEventListener('click', () => {
+            textParagraph.textContent = 'The text has been changed!';
+        });
+
+        // Task 2: Double-Click Event Listener
+        const toggleImage = document.getElementById('toggleImage');
+
+        toggleImage.addEventListener('dblclick', () => {
+            toggleImage.classList.toggle('hidden');
+        });
+
+        // Activity 2: Mouse Events
+
+        // Task 3: Mouseover Event Listener
+        const hoverElement = document.getElementById('hoverElement');
+
+        hoverElement.addEventListener('mouseover', () => {
+            hoverElement.classList.add('highlight');
+        });
+
+        // Task 4: Mouseout Event Listener
+        hoverElement.addEventListener('mouseout', () => {
+            hoverElement.classList.remove('highlight');
+        });
+
+        // Activity 3: Keyboard Events
+
+        // Task 5: Keydown Event Listener
+        const keyInputField = document.getElementById('keyInputField');
+
+        keyInputField.addEventListener('keydown', (event) => {
+            console.log('Key pressed:', event.key);
+        });
+
+        // Task 6: Keyup Event Listener
+        const keyValueDisplay = document.getElementById('keyValueDisplay');
+
+        keyInputField.addEventListener('keyup', (event) => {
+            keyValueDisplay.textContent = 'Current value: ' + event.target.value;
+        });
+
+        // Activity 4: Form Events
+
+        // Task 7: Submit Event Listener
+        const myForm = document.getElementById('myForm');
+
+        myForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const formData = new FormData(myForm);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+            console.log('Form data:', data);
+        });
+
+        // Task 8: Change Event Listener
+        const dropdown = document.getElementById('dropdown');
+        const selectedValue = document.getElementById('selectedValue');
+
+        dropdown.addEventListener('change', (event) => {
+            selectedValue.textContent = 'Selected value: ' + event.target.value;
+        });
+
+        // Activity 5: Event Delegation
+
+        // Task 9: Click Event Listener
+        const itemList = document.getElementById('itemList');
+
+        itemList.addEventListener('click', (event) => {
+            if (event.target && event.target.matches('li.list-item')) {
+                console.log('Clicked item:', event.target.textContent);
+            }
+        });
+
+        // Task 10: Event Listener for Dynamically Added Child Elements
+        const addItemButton = document.getElementById('addItemButton');
+
+        addItemButton.addEventListener('click', () => {
+            const newItem = document.createElement('li');
+            newItem.classList.add('list-item');
+            newItem.textContent = 'New Item';
+            itemList.appendChild(newItem);
+        });
+    </script>
+</body>
+</html>
