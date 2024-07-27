@@ -1,0 +1,16 @@
+{
+    "name": "day13-modules",
+    "version": "1.0.0",
+    "type": "module",
+    "description": "A project demonstrating ES modules",
+    "main": "Day13scripts.js",
+    "scripts": {
+        "start": "node Day13scripts.js"
+    },
+    "author": "Your Name",
+    "license": "ISC",
+    "dependencies": {
+        "axios": "^1.7.2",
+        "lodash": "^4.17.21"
+    }
+}
